@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
+const path = require("path");
 const Registration = require("../models/Registration");
 const Achievement = require("../models/Achievement"); // Assuming you have an Achievement model
 
@@ -117,14 +119,18 @@ const addAchievement = async (req, res) => {
     const studentId = decoded.user.id;
 
     const file = req.file; // Assuming you're using multer for file uploads
-    const certificateBase64 = file.buffer.toString("base64"); // Convert file buffer to Base64
+    const certificateBase64 = file ? file.buffer.toString("base64") : null; // Only convert to Base64 if a file is uploaded
 
     const newAchievement = new Achievement({
       studentId,
-      eventName: req.body.eventName,
-      eventDate: req.body.eventDate,
-      rank: req.body.rank,
-      certificate: certificateBase64, // Store Base64 string
+      eventName: req.body.eventName || '', // Default to empty string if not provided
+      eventDate: req.body.eventDate || '', // Default to empty string if not provided
+      rank: req.body.rank || '', // Default to empty string if not provided
+      place: req.body.place || '', // Default to empty string if not provided
+      state: req.body.state || '', // Default to empty string if not provided
+      eventtype: req.body.eventtype || '', // Default to empty string if not provided
+      location: req.body.location || '', // Default to empty string if not provided
+      certificate: certificateBase64, // Optional certificate, can be null
     });
 
     await newAchievement.save();
@@ -134,7 +140,6 @@ const addAchievement = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
 
 const getStudentAchievements = async (req, res) => {
   try {

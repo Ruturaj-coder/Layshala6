@@ -37,7 +37,7 @@ const Login = () => {
       const response = await axios.post(endpoint, payload);
       const { token } = response.data;
 
-      localStorage.setItem(userType === "student" ? "StudentToken" : "AdminToken", token);
+      localStorage.setItem(userType === "student" ? "authToken" : "AdminToken", token);
 
       if (userType === "student") {
         navigate("/login/student/home");

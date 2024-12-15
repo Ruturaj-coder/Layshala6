@@ -89,7 +89,9 @@ const StudentAchievementForm = () => {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
           <h4>Submit Your Achievement</h4>
-          <p className="text-muted">"Showcase Your Triumphs! 🏆 Let Your Achievements Shine Bright 🏅."</p>
+          <p className="text-muted">
+            "Showcase Your Triumphs! 🏆 Let Your Achievements Shine Bright 🏅."
+          </p>
         </div>
       </div>
 
@@ -131,7 +133,7 @@ const StudentAchievementForm = () => {
               value={formData.rank}
               onChange={handleChange}
               placeholder="Enter the rank"
-              required
+              
             />
           </div>
 
@@ -227,73 +229,81 @@ const StudentAchievementForm = () => {
       {/* Existing Previous Achievements Section */}
 
       <div className="mt-4">
-  <div
-    className="card p-4"
-    style={{ backgroundColor: "#f8f9fa", borderRadius: "8px" }}
-  >
-    <h4
-      className="text-center"
-      style={{
-        fontFamily: "Noto Sans",
-        fontWeight: "800",
-        fontSize: "20px",
-        opacity: "0.5",
-      }}
-    >
-      PREVIOUS ACHIEVEMENTS
-    </h4>
-    <div className="row">
-      {achievements.length > 0 ? (
-        achievements.map((achievement) => (
-          <div
-            key={achievement._id}
-            className="col-md-4 mb-4"
+        <div
+          className="card p-4"
+          style={{ backgroundColor: "#f8f9fa", borderRadius: "8px" }}
+        >
+          <h4
+            className="text-center"
             style={{
-              display: "flex",
-              justifyContent: "center",
+              fontFamily: "Noto Sans",
+              fontWeight: "800",
+              fontSize: "20px",
+              opacity: "0.5",
             }}
           >
-            <div
-              className="card card-hover"
-              style={{
-                width: "100%",
-                border: "1px solid #ddd",
-                borderRadius: "8px",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                backgroundColor: "#ffffff",
-                overflow: "hidden",
-              }}
-            >
-              <img
-                src={`data:image/jpg;base64,${achievement.certificate}`}
-                alt="certificate"
-                style={{
-                  width: "100%",
-                  height: "200px",
-                  objectFit: "cover",
-                }}
-              />
-              <div style={{ padding: "15px" }}>
-                <h5 style={{ fontWeight: "bold", textAlign: "center" }}>
-                  {achievement.eventName}
-                </h5>
-                <p style={{ textAlign: "center" }}>
-                  {new Date(achievement.eventDate).toDateString()}
-                </p>
-                <p style={{ textAlign: "center" }}>Rank: {achievement.rank}</p>
-                <p style={{ textAlign: "center" }}>Place: {achievement.place}</p>
-                <p style={{ textAlign: "center" }}>State: {achievement.state}</p>
-                <p style={{ textAlign: "center" }}>Eventype: {achievement.eventtype}</p>
-              </div>
-            </div>
+            PREVIOUS ACHIEVEMENTS
+          </h4>
+          <div className="row">
+            {achievements.length > 0 ? (
+              achievements.map((achievement) => (
+                <div
+                  key={achievement._id}
+                  className="col-md-4 mb-4"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <div
+                    className="card card-hover"
+                    style={{
+                      width: "100%",
+                      border: "1px solid #ddd",
+                      borderRadius: "8px",
+                      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                      backgroundColor: "#ffffff",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <img
+                      src={`data:image/jpg;base64,${achievement.certificate}`}
+                      alt="certificate"
+                      style={{
+                        width: "100%",
+                        height: "200px",
+                        objectFit: "cover",
+                      }}
+                    />
+                    <div style={{ padding: "15px" }}>
+                      <h5 style={{ fontWeight: "bold", textAlign: "center" }}>
+                        {achievement.eventName}
+                      </h5>
+                      <p style={{ textAlign: "center" }}>
+                        {new Date(achievement.eventDate).toDateString()}
+                      </p>
+                      <p style={{ textAlign: "center" }}>
+                        Rank: {achievement.rank}
+                      </p>
+                      <p style={{ textAlign: "center" }}>
+                        Place: {achievement.place}
+                      </p>
+                      <p style={{ textAlign: "center" }}>
+                        State: {achievement.state}
+                      </p>
+                      <p style={{ textAlign: "center" }}>
+                        Eventype: {achievement.eventtype}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p className="text-center">No achievements to display</p>
+            )}
           </div>
-        ))
-      ) : (
-        <p className="text-center">No achievements to display</p>
-      )}
-    </div>
-  </div>
-</div>
+        </div>
+      </div>
     </div>
   );
 };

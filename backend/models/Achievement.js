@@ -8,19 +8,35 @@ const achievementSchema = new mongoose.Schema({
   },
   eventName: {
     type: String,
-    required: true,
+    required: false, // No longer required
   },
   eventDate: {
     type: Date,
-    required: true,
+    required: false, // No longer required
   },
   rank: {
     type: String,
-    required: true,
+    required: false, // No longer required
+  },
+  place: {
+    type: String,
+    required: false, // No longer required
+  },
+  state: {
+    type: String,
+    required: false, // No longer required
+  },
+  eventtype: {
+    type: String,
+    required: false, // No longer required
+  },
+  location: {
+    type: String,
+    required: false, // No longer required
   },
   certificate: {
     type: String, // Store the binary data of the certificate
-    required: true,
+    required: false, // No longer required
   },
 }, { timestamps: true });
 
